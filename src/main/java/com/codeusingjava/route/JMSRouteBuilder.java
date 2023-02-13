@@ -11,7 +11,7 @@ public class JMSRouteBuilder extends RouteBuilder {
 		from("file:src/data?noop=true").routeId("testRoute").process(msg -> {
 			File fileName = msg.getIn().getBody(File.class);
 			String fileContent = msg.getIn().getBody(String.class);
-			System.out.println(  fileName+ " " + fileContent);
+			log.warn("Processing file: {} with content: {}", fileName, fileContent);
 		})
 		.to("jmsComponent:queue:codeusingjava-outputqueue");
 	}
